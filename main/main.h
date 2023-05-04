@@ -1,21 +1,17 @@
 /**
  * @file xmain.h
- * @author CamFo Camille Fortin (camfortin2022@gmail.com)
+ * @author Francis Gratton
  * 
  * @brief Le fichier xmain.h est nécessaire pour les includions global qui
- *   contien les defines essentiel au fonctionnement du véhicule 
- *  fesant partie du projet de 5e session de TSO. Le processeur utilisé
- *  pour la gestion du véhicule est un ESP32. Voir le document de projet
- *  pour plus d'information sur le fonctionnement du véhicule. 
+ *   contien les defines essentiel au fonctionnement du projet Batiscan.
  *      
- *  Le programme suivant fonctionne avec une base de temps et des machine d'état.
- *  Le processus principale du programme est le \ref xprocessusVehicule.h 
+ *  Le programme suivant fonctionne avec une base de temps et des machine à état.
  * 
  *   
  * @version 0.1
- * @date 2022-11-15
+ * @date 2023-05-04
  * 
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2023
  * 
  */
 

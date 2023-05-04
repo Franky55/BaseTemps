@@ -1,14 +1,14 @@
 //#############################################################################
 /**
  * @file main.c
- * @author CamFo Camille Fortin (camfortin2022@gmail.com)
+ * @author Francis Gratton
  * @brief
  * Program file containing the code defined in xmain.h
  * Please refer to this other file for information necessary in order to make this work.
- * @version 0.1
- * @date 2022-11-14
+ * @version 0.0.0
+ * @date 2023-05-04
  * 
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2023
  * 
  */
 //#############################################################################
@@ -36,19 +36,28 @@
 
 //Definitions privees
 //pas de definitions privees
-void main_faitUnTest(void);
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+ #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
+#endif
 
-//Declarations de fonctions privees:
+// Which pin on the Arduino is connected to the NeoPixels?
+#define PIN        48 // On Trinket or Gemma, suggest changing this to 1
 
-/// @brief Fonction qui permet de tester certain module en activant 
-//      leur requête tout de suite après leur initialisation
-/// @param void
-void main_faitUnTest(void)
-{
-  
-}
+// How many NeoPixels are attached to the Arduino?
+#define NUMPIXELS 1 // Popular NeoPixel ring size
+
+// When setting up the NeoPixel library, we tell it how many pixels,
+// and which pin to use to send signals. Note that for older NeoPixel
+// strips you might need to change the third parameter -- see the
+// strandtest example for more information on possible values.
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+#define DELAYVAL 5 // Time (in milliseconds) to pause between pixels
+
+
 /// @brief Fonction qui fait l'initialisation de tout les modules permettant
-//   au fonctionnement global du véhicule.
+//   au fonctionnement
 /// @param void
 void main_initialise(void);
 
@@ -75,7 +84,14 @@ void setup(void)
 {
   Serial.begin(115200);
   main_initialise();
-  main_faitUnTest();
+
+  #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
+  clock_prescale_set(clock_div_1);
+  #endif
+  // END of Trinket-specific code.
+
+  pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+
   serviceTaskServer_DemarreLesTachesALaTouteFinDeSetup();
 }
 
@@ -85,8 +101,3 @@ void loop(void)
   serviceBaseDeTemps_gereDansLoop();   
 }
 
-//Definitions de variables publiques:
-//pas de variables publiques
-
-//Definitions de fonctions publiques:
-//pas de fonctions publiques

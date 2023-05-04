@@ -46,7 +46,7 @@ void processusClignotant_attendAvantDAllumerLeTemoinLumineux(void)
   // END test Code 
   interfaceT1_allume();
   processusClignotant_compteur = 0;
-  serviceBaseDeTemps_execute[PROCESSUSCLIGNOTANT_PHASE] = processusClignotant_attendAvantDEteindreLeTemoinLumineux;
+  //serviceBaseDeTemps_execute[PROCESSUSCLIGNOTANT_PHASE] = processusClignotant_attendAvantDEteindreLeTemoinLumineux;
 }
 
 void processusClignotant_attendAvantDEteindreLeTemoinLumineux(void)
